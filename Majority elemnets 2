@@ -1,0 +1,39 @@
+import java.util.*;
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        int n = nums.length / 3;
+        int count = 1;
+        ArrayList<Integer> val = new ArrayList<>();
+        Arrays.sort(nums);
+
+        if (nums.length == 0)
+            return val;
+        if (nums.length == 1) {
+            val.add(nums[0]);
+            return val;
+        }
+        if (nums.length == 2) {
+            if (nums[0] == nums[1]) {
+                val.add(nums[0]);
+            } else {
+                val.add(nums[0]);
+                val.add(nums[1]);
+            }
+            return val;
+        }
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            while (i < nums.length - 1 && nums[i] == nums[i + 1]) {
+                count++;
+                i++;
+            }
+            if (count > n && !val.contains(nums[i])) {
+                val.add(nums[i]);
+            }
+            count = 1;
+        }
+
+        return val;
+    }
+}
