@@ -1,0 +1,24 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        int mini=nums[0];
+        int count=0, maxi=1;
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int i=0;i<nums.length;i++)
+        {
+            arr.add(nums[i]);
+            mini = Math.min(mini, nums[i]);
+        }
+        for(int i=0;i<nums.length;i++)
+        {
+            if(arr.contains(mini))
+            count++;
+            else
+            {
+                maxi= Math.max(count,maxi);
+                count=0;
+            }
+            mini++;
+        }
+        return maxi;
+    }
+}
